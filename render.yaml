@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: eduverse
+    env: python
+    plan: free
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    startCommand: "gunicorn Coursera.wsgi --log-file -"
+    preDeployCommand: "python manage.py migrate"
+    autoDeploy: true
+    envVars:
+      - key: SECRET_KEY
+        sync: false
+      - key: DEBUG
+        value: "False"
+      - key: ALLOWED_HOSTS
+        value: "eduverse.onrender.com"
+      - key: CSRF_TRUSTED_ORIGINS
+        value: "https://eduverse.onrender.com"
+      - key: STRIPE_PUBLISHABLE_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: eduverse-db
+          property: connectionString
+
+databases:
+  - name: eduverse-db
+    plan: free
+

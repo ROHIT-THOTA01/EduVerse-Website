@@ -52,3 +52,24 @@ Feel free to contact me if you have any suggestions or feedback.
   </a>
   
 </div>
+
+## Deploying to Render
+
+This repository now ships with infrastructure files for the [Render](https://render.com) platform (`render.yaml`, `Procfile`, and `requirements.txt`). To deploy:
+
+1. Push your code to GitHub (already done in this repo).
+2. In Render:
+   - Click **New +** → **Blueprint** → point Render to this repository. Render will read `render.yaml` and provision a PostgreSQL database plus the web service automatically.
+3. Set the following environment variables in Render (Render will prompt you):
+
+   | Variable | Purpose |
+   | --- | --- |
+   | `SECRET_KEY` | Django secret key (use a random 50+ char string) |
+   | `DEBUG` | Set to `False` in production |
+   | `ALLOWED_HOSTS` / `CSRF_TRUSTED_ORIGINS` | Comma-separated host/origin list (Render sets defaults, edit when custom domain is added) |
+   | `STRIPE_PUBLISHABLE_KEY` / `STRIPE_SECRET_KEY` | Your Stripe credentials |
+
+4. Render runs `pip install -r requirements.txt && python manage.py collectstatic --noinput` during build and `python manage.py migrate` before each deploy. The web process uses `gunicorn Coursera.wsgi --log-file -`.
+5. After the first deploy finishes you can create a superuser by opening the Render shell or running `python manage.py createsuperuser` locally and connecting to the Render database.
+
+You can still deploy elsewhere (Railway, Fly.io, etc.); Docker/WSGI friendly settings such as environment-based configuration and WhiteNoise static serving are now enabled.
