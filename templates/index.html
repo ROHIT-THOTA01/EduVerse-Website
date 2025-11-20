@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<!-- Hero section -->
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-text text-white">
+      <h2>Learn without limits</h2>
+      <p>Start, switch, or advance your career with thousands of courses, Professional Certificates, and degrees from world-class instructors and companies.</p>
+    </div>
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        <form class="intro-newslatter">
+          <input type="text" placeholder="What do you want to learn?">
+          <button class="site-btn">Search</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Hero section end -->
+
+
+<!-- categories section -->
+<section class="categories-section spad" style="background: #fff; padding-top: 80px; padding-bottom: 80px;">
+  <div class="container">
+    <div class="section-title">
+      <h2 style="color: #1c1d1f;">Explore our course categories</h2>
+      <p style="color: #6a6f73;">Discover courses in various fields and start your learning journey today.</p>
+    </div>
+    <div class="row">
+      {% for cat in category %}
+      <!-- categorie -->
+      <div class="col-lg-4 col-md-6">
+        <div class="categorie-item">
+          <div class="ci-thumb set-bg" data-setbg="{% static 'webuni/img/categories/1.jpg' %}" style="height: 200px;"></div>
+          <div class="ci-text">
+            <h5 style="color: #1c1d1f; margin-bottom: 12px;">{{cat|capfirst}}</h5>
+            <p style="color: #6a6f73; margin-bottom: 12px;">Explore courses in this category</p>
+            <span>Browse courses</span>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+<!-- categories section end -->
+
+<!-- signup section -->
+<section class="signup-section spad" style="background: linear-gradient(180deg, #0056d2 0%, #004182 100%);">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2">
+        <div class="signup-warp">
+          <div class="section-title text-white text-left" style="text-align: center; padding: 0; margin-bottom: 40px;">
+            <h2 style="color: #fff; margin-bottom: 16px;">Become an instructor</h2>
+            <p style="color: rgba(255,255,255,0.9);">Share your knowledge and help millions of learners around the world. Join our instructor community today.</p>
+          </div>
+          <!-- signup form -->
+          <form class="signup-form" style="max-width: 600px; margin: 0 auto;">
+            <input type="text" placeholder="Your name" name="name">
+            <input type="email" placeholder="Your email" name="e-mail">
+            <input type="text" placeholder="Your phone number" name="phone">
+            <button class="site-btn" style="width: 100%;">Submit Application</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- signup section end -->
+
+{% endblock content %}

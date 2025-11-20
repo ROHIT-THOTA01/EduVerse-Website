@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block post_detail_link %}
+
+{% endblock %}
+
+{% block content %}
+<!-- Page info -->
+<div class="page-info-section" style="background: linear-gradient(180deg, #0056d2 0%, #004182 100%); height: 200px; margin-top: 70px; display: flex; align-items: center;">
+  <div class="container">
+    <div class="site-breadcrumb">
+      <a href="{% url 'courses:home' %}" style="color: rgba(255,255,255,0.8);">Home</a>
+      <a href="{% url 'courses:course_list' %}" style="color: rgba(255,255,255,0.8);">Courses</a>
+      {% if lesson is not None %}
+      <a href="{{ lesson.course.get_absolute_url }}" style="color: rgba(255,255,255,0.8);">{{ lesson.course.title }}</a>
+      <span style="color: #fff;">{{ lesson.title }}</span>
+      {% endif %}
+    </div>
+  </div>
+</div>
+<!-- Page info end -->
+
+<section class="single-course spad pb-0" style="background: #f7f9fa; padding-top: 40px; padding-bottom: 60px;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 offset-lg-1">
+        {% if lesson is not None %}
+        <div style="background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);">
+          {% if is_demo %}
+          <div style="background: #d4edda; border: 1px solid #c3e6cb; padding: 16px 20px; border-radius: 8px; margin-bottom: 24px;">
+            <p style="color: #155724; font-size: 14px; margin: 0;">
+              <i class="fa fa-info-circle" style="margin-right: 8px;"></i>
+              You're watching a <strong>FREE PREVIEW</strong>. Upgrade your membership to access all course videos and lessons.
+              <a href="{% url 'memberships:select_membership' %}" style="color: #0056d2; font-weight: 600; margin-left: 8px;">Upgrade Now →</a>
+            </p>
+          </div>
+          {% endif %}
+          <div style="margin-bottom: 24px;">
+            <a href="{{ lesson.course.get_absolute_url }}" style="color: #0056d2; text-decoration: none; font-size: 14px; margin-bottom: 8px; display: inline-block;">
+              <i class="fa fa-arrow-left" style="margin-right: 8px;"></i>Back to Course
+            </a>
+            <h1 style="color: #1c1d1f; font-size: 32px; font-weight: 700; margin-bottom: 8px;">
+              {{ lesson.title }}
+              {% if is_demo %}
+              <span style="background: #28a745; color: #fff; padding: 4px 12px; border-radius: 4px; font-size: 14px; font-weight: 600; margin-left: 12px;">FREE PREVIEW</span>
+              {% endif %}
+            </h1>
+            <p style="color: #6a6f73; font-size: 16px; margin: 0;">Lesson {{ lesson.position }} - {{ lesson.course.title }}</p>
+          </div>
+          
+          <div style="background: #000; border-radius: 8px; overflow: hidden; margin-bottom: 24px;">
+            {% if lesson.video_url %}
+            <video controls
+                   controlsList="nodownload"
+                   {% if lesson.thumbnail %}poster="{{ lesson.thumbnail.url }}"{% endif %}
+                   src="{{ lesson.video_url.url }}"
+                   width="100%"
+                   height="auto"
+                   style="display: block; width: 100%;">
+              Sorry, your browser doesn't support embedded videos.
+            </video>
+            {% else %}
+            <div style="padding: 60px; text-align: center; color: #fff;">
+              <i class="fa fa-video" style="font-size: 48px; margin-bottom: 16px; opacity: 0.5;"></i>
+              <p>No video available for this lesson</p>
+            </div>
+            {% endif %}
+          </div>
+          
+          <div style="padding-top: 24px; border-top: 1px solid #d1d7dc;">
+            <h3 style="color: #1c1d1f; font-size: 20px; font-weight: 700; margin-bottom: 16px;">About this lesson</h3>
+            <p style="color: #6a6f73; font-size: 16px; line-height: 1.6;">This is lesson {{ lesson.position }} of the course "{{ lesson.course.title }}". Watch the video above to learn more about this topic.</p>
+          </div>
+        </div>
+        {% else %}
+        <div style="background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08); text-align: center;">
+          <h3 style="color: #1c1d1f; font-size: 24px; font-weight: 700; margin-bottom: 16px;">Upgrade Your Membership</h3>
+          <p style="color: #6a6f73; font-size: 16px; margin-bottom: 24px;">You need to upgrade your membership to view this course</p>
+          <a href="{% url 'memberships:select_membership' %}" class="site-btn">Upgrade Membership</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% endblock content %}

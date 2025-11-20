@@ -1,0 +1,29 @@
+# Python artifacts
+__pycache__/
+*.py[cod]
+*.class
+
+# Virtualenv
+venv/
+.venv/
+ENV/
+
+# Django
+/staticfiles/
+media/
+*.sqlite3
+db.sqlite3
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+static/cdn/static_cdn/
+static/static_cdn/
+Django-Corsera-clone/

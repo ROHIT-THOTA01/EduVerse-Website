@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="uz">
+<head>
+	<title>{% block head_title %}Coursera Clone - Online Learning Platform{% endblock %}</title>
+	<meta charset="UTF-8">
+	<meta name="description" content="Learn new skills with world-class courses">
+	<meta name="keywords" content="courses, online learning, education, skills">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- Favicon -->
+	<link href="img/favicon.ico" rel="shortcut icon"/>
+
+	<!-- Google Fonts -->
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{% static 'webuni/css/bootstrap.min.css'%}"/>
+	<link rel="stylesheet" href="{% static 'webuni/css/font-awesome.min.css' %}"/>
+	<link rel="stylesheet" href="{% static 'webuni/css/owl.carousel.css' %}"/>
+	<link rel="stylesheet" href="{% static 'webuni/css/style.css'%}"/>
+
+
+
+</head>
+<body>
+	<!-- Page Preloder -->
+	<div id="preloder">
+		<div class="loader"></div>
+	</div>
+
+	<!-- Header section -->
+	<header class="header-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-3">
+					<div class="site-logo">
+						<a href="{% url 'courses:home' %}" style="text-decoration: none; color: #0056d2; font-size: 24px; font-weight: 700;">Coursera</a>
+					</div>
+					<div class="nav-switch">
+						<i class="fa fa-bars"></i>
+					</div>
+				</div>
+				<div class="col-lg-9 col-md-9">
+					<nav class="main-menu">
+						<ul>
+							<li><a href="{% url 'courses:home' %}">Home</a></li>
+							<li><a href="{% url 'courses:course_list' %}">Courses</a></li>
+							<li><a href="{% url 'courses:about' %}">About</a></li>
+							<li><a href="{% url 'courses:contact' %}">Contact</a></li>
+							<li><a href="{% url 'blogs:post_list' %}">Blog</a></li>
+						</ul>
+					</nav>
+					{% if request.user.is_authenticated%}
+					<a href="{% url 'users:profile' %}" class="site-btn header-btn" style="float: right; margin-left: 12px;">{{request.user.username}}</a>
+					<a href="{% url 'account_logout' %}" class="site-btn header-btn" style="float: right; background: transparent; color: #1c1d1f; border: 1px solid #1c1d1f;">Logout</a>
+					{% else %}
+					<a href="{% url 'account_login' %}" class="site-btn header-btn" style="float: right; margin-left: 12px;">Log in</a>
+					<a href="{% url 'account_signup' %}" class="site-btn header-btn" style="float: right; background: transparent; color: #1c1d1f; border: 1px solid #1c1d1f;">Sign up</a>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</header>
+	<!-- Header section end -->
+{% include 'inc/messages.html' %}
+{% block content %}
+
+{% endblock content %}
+
+
+	<!-- banner section -->
+	<section class="banner-section spad" style="background: #f7f9fa; border-top: 1px solid #d1d7dc;">
+		<div class="container">
+			<div class="section-title mb-0 pb-2">
+				<h2 style="color: #1c1d1f;">Join our learning community today!</h2>
+				<p style="color: #6a6f73;">Start learning from world-class instructors and advance your career with our comprehensive courses.</p>
+			</div>
+			<div class="text-center pt-5">
+				<a href="{% url 'account_signup' %}" class="site-btn">Sign up for free</a>
+			</div>
+		</div>
+	</section>
+	<!-- banner section end -->
+
+
+	<!-- footer section -->
+	<footer class="footer-section spad pb-0">
+		<div class="footer-top">
+			<div class="footer-warp">
+				<div class="row">
+				<div class="widget-item">
+					<h4>Contact</h4>
+					<ul class="contact-list">
+						<li>123 Learning Street<br>Education City, EC 12345</li>
+						<li>+1 (555) 123-4567</li>
+						<li>support@courseraclone.com</li>
+					</ul>
+				</div>
+				<div class="widget-item">
+					<h4>Engineering</h4>
+					<ul>
+						<li><a href="{% url 'courses:course_list' %}">Computer Science</a></li>
+						<li><a href="{% url 'courses:course_list' %}">Software Engineering</a></li>
+						<li><a href="{% url 'courses:course_list' %}">Data Science</a></li>
+						<li><a href="{% url 'courses:course_list' %}">Machine Learning</a></li>
+						<li><a href="{% url 'courses:course_list' %}">Web Development</a></li>
+					</ul>
+				</div>
+				<div class="widget-item">
+					<h4>Design</h4>
+					<ul>
+						<li><a href="{% url 'courses:course_list' %}">Graphic Design</a></li>
+						<li><a href="{% url 'courses:course_list' %}">UI/UX Design</a></li>
+						<li><a href="{% url 'courses:course_list' %}">Digital Marketing</a></li>
+						<li><a href="{% url 'courses:course_list' %}">Photography</a></li>
+						<li><a href="{% url 'courses:course_list' %}">Video Editing</a></li>
+					</ul>
+				</div>
+				<div class="widget-item">
+					<h4>Business</h4>
+					<ul>
+						<li><a href="{% url 'courses:course_list' %}">Business Analytics</a></li>
+						<li><a href="{% url 'courses:course_list' %}">Project Management</a></li>
+						<li><a href="{% url 'courses:course_list' %}">Entrepreneurship</a></li>
+						<li><a href="{% url 'courses:course_list' %}">Finance</a></li>
+						<li><a href="{% url 'courses:course_list' %}">Marketing</a></li>
+					</ul>
+				</div>
+				<div class="widget-item">
+					<h4>Newsletter</h4>
+					<form class="footer-newslatter">
+						<input type="email" placeholder="Your email">
+						<button class="site-btn">Subscribe</button>
+						<p>* We don't send spam</p>
+					</form>
+				</div>
+				</div>
+			</div>
+		</div>
+		<div class="footer-bottom">
+			<div class="footer-warp">
+				<ul class="footer-menu">
+					<li><a href="#">Terms of Use</a></li>
+					<li><a href="#">Privacy Policy</a></li>
+					<li><a href="#">Cookie Policy</a></li>
+					<li><a href="#">Accessibility</a></li>
+				</ul>
+				<div class="copyright">
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Coursera Clone</div>
+			</div>
+		</div>
+	</footer>
+	<!-- footer section end -->
+
+
+	<!--====== Javascripts & Jquery ======-->
+	<script async src="https://relayv2-dev.s3.amazonaws.com/analytics/distrobird_widget.js" data-widget-uid="c97e3cb3-9d88-42cc-a467-9288c7075e84"></script>
+	<script src="{% static 'webuni/js/jquery-3.2.1.min.js' %}"></script>
+	<script src="{% static 'webuni/js/bootstrap.min.js' %}"></script>
+	<script src="{% static 'webuni/js/mixitup.min.js' %}"></script>
+	<script src="{% static 'webuni/js/circle-progress.min.js' %}"></script>
+	<script src="{% static 'webuni/js/owl.carousel.min.js' %}"></script>
+	<script src="{% static 'webuni/js/main.js' %}"></script>
+</html>

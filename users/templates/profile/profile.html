@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% load i18n %}
+
+<hr>
+<hr>
+
+{% block content %}
+{% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">
+      {{ message }}
+    </div>
+  {% endfor %}
+{% endif %}
+<h1 class="entry-title">Profile</h1>
+<!-- background-color: beige;
+    color: #ab00ff; -->
+<div class="page-info-section set-bg mb-3" data-setbg="{% static 'webuni/img/page-bg/2.jpg' %}" style="height:200px">
+  <div class="container">
+    <div class="site-breadcrumb">
+
+    </div>
+  </div>
+</div>
+<div class="container-fluid pl-5 pr-5 " style="background-color: beige;color: #ab00ff;">
+  <div class="content-section">
+    <div class="media">
+      {% if user.profile and user.profile.profile_pic %}
+      <img class="rounded-circle account-img" style="width:150px; height:150px;" src="{{ user.profile.profile_pic.url }}">
+      {% else %}
+      <img class="rounded-circle account-img" style="width:150px; height:150px;" src="{% static 'webuni/img/authors/1.jpg' %}">
+      {% endif %}
+      <div class="media-body">
+        <h2 class="account-heading  display-4 pt-4 pl-4 ">{{ user.username }}</h2>
+        <p class="text-secondary">{{ user.email }}</p>
+      </div>
+    </div>
+    <form method="POST" enctype="multipart/form-data" class="">
+       {% csrf_token %}
+       <fieldset class="form-group">
+           <h5><legend class="border-bottom mb-4 pt-4 display-3 text-center">My Account</legend></h5>
+           {{ u_form|crispy }}
+           {{ p_form|crispy }}
+       </fieldset>
+       <div class="form-group">
+           <button class="site-btn" type="submit">Update Profile</button>
+       </div>
+   </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Page info -->
+<div class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-bg/2.jpg' %}">
+  <div class="container">
+    <div class="site-breadcrumb">
+      <a href="{% url 'courses:home' %}">Home</a>
+      <a href="{% url 'blogs:post_list' %}">Blog</a>
+      <span>{{ post.title }}</span>
+    </div>
+  </div>
+</div>
+<!-- Page info end -->
+
+<section class="blog-page spad pb-0" style="background: #f7f9fa; padding: 60px 0;">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="blog-post" style="background: #fff; padding: 40px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,.08), 0 4px 12px rgba(0,0,0,.08);">
+          {% if post.image %}
+          <img src="{{ post.image.url }}" alt="{{ post.title }}" style="width: 100%; border-radius: 8px; margin-bottom: 24px;">
+          {% endif %}
+          <h3 style="color: #1c1d1f; font-size: 32px; font-weight: 700; margin-bottom: 16px;">{{ post.title }}</h3>
+          <div class="blog-metas" style="margin-bottom: 24px;">
+            <div class="blog-meta author">
+              <div class="post-author set-bg" data-setbg="{% static 'webuni/img/authors/1.jpg' %}" style="width: 32px; height: 32px; border-radius: 50%;"></div>
+              <a href="#" style="color: #6a6f73; font-size: 14px;">{{ post.author.username }}</a>
+            </div>
+            <div class="blog-meta">
+              <a href="#" style="color: #6a6f73; font-size: 14px;">{{ post.created_date|date:"F d, Y" }}</a>
+            </div>
+          </div>
+          <div style="color: #6a6f73; font-size: 16px; line-height: 1.8;">
+            {{ post.text|linebreaks }}
+          </div>
+          <div style="margin-top: 40px;">
+            <a href="{% url 'blogs:post_list' %}" class="site-btn">Back to Blog</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock content %}

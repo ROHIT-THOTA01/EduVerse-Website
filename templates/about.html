@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Page info -->
+<div class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-bg/4.jpg' %}">
+  <div class="container">
+    <div class="site-breadcrumb">
+      <a href="{% url 'courses:home' %}">Home</a>
+      <span>About Us</span>
+    </div>
+  </div>
+</div>
+<!-- Page info end -->
+
+
+<section class="about-us py-5 " id="about-us">
+    <div class="container mt-5">
+	<div class="row">
+		<div class="col-md-6">
+		    <h1 style='color: #0056d2;'>Welcome!</h1>
+		    <h2>Learn More About Us</h2>
+		    <hr>
+		    <p>We are dedicated to providing high-quality online education to learners worldwide. Our platform offers comprehensive courses designed by expert instructors to help you achieve your learning goals.</p>
+		    <p>Whether you're looking to advance your career, learn new skills, or explore new interests, we have courses that can help you succeed. Join thousands of students who are already learning with us.</p>
+		    <a href="{% url 'courses:course_list' %}" class="site-btn">Explore Courses</a>
+
+		</div>
+		<div class="col-md-6">
+		    <img src="http://themebubble.com/demo/marketingpro/wp-content/uploads/2016/10/seo-slide.png" alt="About Us">
+		</div>
+	</div>
+</div>
+</section>
+{% endblock %}

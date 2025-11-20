@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+
+<!-- Page info -->
+<div class="page-info-section set-bg" data-setbg="{% static 'webuni/img/page-bg/4.jpg' %}">
+  <div class="container">
+    <div class="site-breadcrumb">
+      <a href="{% url 'courses:home' %}">Home</a>
+      <span>Contact</span>
+    </div>
+  </div>
+</div>
+<!-- Page info end -->
+
+
+<!-- search section -->
+<section class="search-section ss-other-page">
+  <div class="container">
+    <div class="search-warp">
+      <div class="section-title text-white">
+        <h2><span>Find Your Course</span></h2>
+      </div>
+      <div class="row">
+        <div class="col-lg-10 offset-lg-1">
+          <!-- search form -->
+          <form class="course-search-form">
+            <input type="text" placeholder="Course name">
+            <input type="text" class="last-m" placeholder="Category">
+            <button class="site-btn btn-dark">Search Course</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- search section end -->
+
+
+
+<!-- Page -->
+<section class="contact-page spad pb-0">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8">
+        <div class="contact-form-warp">
+          <div class="section-title text-white text-left">
+            <h2>Get in Touch</h2>
+            <p>Have questions or need help? We're here to assist you. Reach out to us through the form below or contact us directly using the information provided.</p>
+          </div>
+          <form class="contact-form">
+            <input type="text" placeholder="Your Name">
+            <input type="text" placeholder="Your Email">
+            <input type="text" placeholder="Subject">
+            <textarea placeholder="Your Message"></textarea>
+            <button class="site-btn">Send Message</button>
+          </form>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="contact-info-area">
+          <div class="section-title text-left p-0">
+            <h2>Contact Information</h2>
+            <p>We're here to help! Feel free to reach out to us with any questions, feedback, or inquiries about our courses and services.</p>
+          </div>
+          <div class="phone-number">
+            <span>Direct Contact</span>
+            <h2>+1 (555) 123-4567</h2>
+          </div>
+          <ul class="contact-list">
+            <li>123 Learning Street<br>Education City, EC 12345</li>
+            <li>+1 (555) 123-4567</li>
+            <li>support@courseraclone.com</li>
+          </ul>
+          <div class="social-links">
+            <a href="https://t.me/MBin_Dev_0071"><i class="fa fa-telegram"></i></a>
+            <a href="https://m.facebook.com/suyunov.husanbek/"><i class="fa fa-facebook"></i></a>
+            <a href="https://twitter.com/it_creative0071/"><i class="fa fa-twitter"></i></a>
+            {% comment %} <a href="#"><i class="fa fa-dribbble"></i></a> {% endcomment %}
+            {% comment %} <a href="#"><i class="fa fa-behance"></i></a> {% endcomment %}
+            <a href="https://github.com/xusanbek0071"><i class="fa fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Page end -->
+
+{% endblock content %}
