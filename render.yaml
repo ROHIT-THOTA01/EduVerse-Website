@@ -3,7 +3,7 @@ services:
     name: eduverse
     env: python
     plan: free
-    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    buildCommand: "pip install --upgrade pip && pip install -r requirements.txt && python manage.py collectstatic --noinput"
     startCommand: "gunicorn Coursera.wsgi --log-file -"
     preDeployCommand: "python manage.py migrate"
     autoDeploy: true

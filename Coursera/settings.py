@@ -18,7 +18,12 @@ TEMPLATE_DIR = BASE_DIR / 'templates'
 SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 't')
+
+# Auto-detect Vercel environment
+if os.getenv('VERCEL'):
+    DEBUG = False
 
 def _split_env_list(value):
     return [item.strip() for item in value.split(',') if item.strip()]
@@ -26,6 +31,12 @@ def _split_env_list(value):
 ALLOWED_HOSTS = _split_env_list(os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1'))
 CSRF_TRUSTED_ORIGINS = _split_env_list(os.getenv('CSRF_TRUSTED_ORIGINS', ''))
 
+# Vercel deployment support
+if vercel_url := os.getenv('VERCEL_URL'):
+    ALLOWED_HOSTS.append(vercel_url)
+    CSRF_TRUSTED_ORIGINS.append(f"https://{vercel_url}")
+
+# Render deployment support
 if render_host := os.getenv('RENDER_EXTERNAL_HOSTNAME'):
     ALLOWED_HOSTS.append(render_host)
     CSRF_TRUSTED_ORIGINS.append(f"https://{render_host}")
