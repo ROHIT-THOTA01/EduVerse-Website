@@ -18,7 +18,6 @@ TEMPLATE_DIR = BASE_DIR / 'templates'
 SECRET_KEY = os.getenv('SECRET_KEY', 'dev-secret-key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'False').lower() in ('true', '1', 't')
 
 # Auto-detect Vercel environment
